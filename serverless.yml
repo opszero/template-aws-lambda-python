@@ -4,7 +4,6 @@ provider:
   runtime: python3.8
   stage: prod
   region: us-west-2
-  # profile: opszero
   # deploymentBucket:
   #   name: deploybucketname
   # iamRoleStatements:
@@ -22,7 +21,7 @@ provider:
   #       Fn::Join:
   #         - ""
   #         - - "arn:aws:s3:::"
-  #           - "Ref" : "safetyReportsS3"
+  #           - "Ref" : "setupname"
   #           - '/*'
 
 functions:
