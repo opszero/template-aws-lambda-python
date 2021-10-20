@@ -9,3 +9,7 @@ def cats():
 @app.route("/dogs/<id>")
 def dog(id):
     return "Dog"
+
+@app.route("/health")
+def health():
+    return { "status": "Success" }

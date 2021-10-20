@@ -24,6 +24,9 @@ provider:
   #           - "Ref" : "setupname"
   #           - '/*'
 
+
+
+
 functions:
   api:
     handler: wsgi_handler.handler
@@ -31,21 +34,35 @@ functions:
       - http: ANY /
       - http: ANY /{proxy+}
   handler:
-    handler: handler.handler
+    handler: handler.hello
     timeout: 300
     memorySize: 512
     events:
     - schedule: cron(0/15 18-21 ? * * *)
+  warm_up:
+    handler: warm_up.handler
+    timeout: 300
+    memorySize: 512
+    events:
+    - schedule: cron(0/5 * ? * * *)
+    environment:
+      BASE_URL: { "Fn::Join" : ["", [" https://", { "Ref" : "ApiGatewayRestApi" }, ".execute-api.${self:custom.region}.amazonaws.com/${self:custom.stage}" ] ]  }
 
 plugins:
   - serverless-python-requirements
   - serverless-wsgi
 
 custom:
+  stage: ${opt:stage, self:provider.stage}
+  region: ${opt:region, self:provider.region}
   pythonRequirements:
     dockerizePip: true
   wsgi:
     app: api.app
+
+package:
+  patterns:
+    - '!node_modules/**'
 
 # resources:
 #   Resources:
