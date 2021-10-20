@@ -1,4 +1,4 @@
-service: "" # <name> of the service
+service: "aws-lambda-python" # <name> of the service
 provider:
   name: aws
   runtime: python3.8
@@ -25,6 +25,11 @@ provider:
   #           - '/*'
 
 functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http: ANY /
+      - http: ANY /{proxy+}
   handler:
     handler: handler.handler
     timeout: 300
@@ -34,10 +39,13 @@ functions:
 
 plugins:
   - serverless-python-requirements
+  - serverless-wsgi
 
 custom:
   pythonRequirements:
     dockerizePip: true
+  wsgi:
+    app: api.app
 
 # resources:
 #   Resources:
