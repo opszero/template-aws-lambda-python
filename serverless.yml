@@ -1,7 +1,7 @@
 service: "aws-lambda-python" # <name> of the service
 provider:
   name: aws
-  runtime: python3.8
+  runtime: python3.9
   stage: prod
   region: us-west-2
   deploymentBucket:
@@ -56,8 +56,9 @@ custom:
   region: ${opt:region, self:provider.region}
   pythonRequirements:
     dockerizePip: true
+    dockerImage: python:3.9
   wsgi:
-    app: api.app
+    app: app.app
 
 package:
   patterns:
