@@ -2,9 +2,9 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route("/cats")
+@app.route("/")
 def cats():
-    return "Cats"
+    return "aws-lambda-python"
 
 @app.route("/dogs/<id>")
 def dog(id):

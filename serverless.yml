@@ -6,6 +6,8 @@ provider:
   region: us-west-2
   deploymentBucket:
     name: infra.opszero.com
+  httpApi:
+    cors: true
   # iamRoleStatements:
   #   - Effect: "Allow"
   #     Action:
@@ -24,15 +26,12 @@ provider:
   #           - "Ref" : "setupname"
   #           - '/*'
 
-
-
-
 functions:
   api:
     handler: wsgi_handler.handler
     events:
-      - http: ANY /
-      - http: ANY /{proxy+}
+      - httpApi:
+          path: '*'
   # handler:
   #   handler: handler.hello
   #   timeout: 300
