@@ -6,8 +6,8 @@ provider:
   region: us-west-2
   deploymentBucket:
     name: infra.opszero.com
-  # environment:
-  #   DYNAMODB_TABLE_NAME: <service_name>-${sls:stage}
+  environment:
+    DYNAMODB_TABLE_NAME: ${self:service}}-${sls:stage}
   httpApi:
     cors: true
   # iamRoleStatements:
@@ -66,25 +66,25 @@ package:
   patterns:
     - '!node_modules/**'
 
-# resources:
-#   Resources:
-#     oneTable:
-#       Type: AWS::DynamoDB::Table
-#       Properties:
-#         TableName: <service_name>-${sls:stage}
-#         AttributeDefinitions:
-#           - AttributeName: pk
-#             AttributeType: S
-#           - AttributeName: sk
-#             AttributeType: S
-#         KeySchema:
-#           - AttributeName: pk
-#             KeyType: HASH
-#           - AttributeName: sk
-#             KeyType: RANGE
-#         ProvisionedThroughput:
-#           ReadCapacityUnits: 3
-#           WriteCapacityUnits: 3
+resources:
+  Resources:
+    oneTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-${sls:stage}
+        AttributeDefinitions:
+          - AttributeName: pk
+            AttributeType: S
+          - AttributeName: sk
+            AttributeType: S
+        KeySchema:
+          - AttributeName: pk
+            KeyType: HASH
+          - AttributeName: sk
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
 #     s3bucket:
 #       Type: AWS::S3::Bucket
 #       Properties:
