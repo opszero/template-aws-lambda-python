@@ -6,6 +6,8 @@ provider:
   region: us-west-2
   deploymentBucket:
     name: infra.opszero.com
+  # environment:
+  #   DYNAMODB_TABLE_NAME: <service_name>-${sls:stage}
   httpApi:
     cors: true
   # iamRoleStatements:
@@ -14,7 +16,7 @@ provider:
   #     - dynamodb:*
   #     Resource:
   #       Fn::GetAtt:
-  #         - sourcing
+  #         - oneTable
   #         - Arn
   #   - Effect: "Allow"
   #     Action:
@@ -66,16 +68,20 @@ package:
 
 # resources:
 #   Resources:
-#     tableName:
+#     oneTable:
 #       Type: AWS::DynamoDB::Table
 #       Properties:
-#         TableName: name
+#         TableName: <service_name>-${sls:stage}
 #         AttributeDefinitions:
-#           - AttributeName: link
+#           - AttributeName: pk
+#             AttributeType: S
+#           - AttributeName: sk
 #             AttributeType: S
 #         KeySchema:
-#           - AttributeName: link
+#           - AttributeName: pk
 #             KeyType: HASH
+#           - AttributeName: sk
+#             KeyType: RANGE
 #         ProvisionedThroughput:
 #           ReadCapacityUnits: 3
 #           WriteCapacityUnits: 3
