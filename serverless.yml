@@ -7,7 +7,7 @@ provider:
   deploymentBucket:
     name: infra.opszero.com
   environment:
-    DYNAMODB_TABLE_NAME: ${self:service}}-${sls:stage}
+    DYNAMODB_TABLE_NAME: ${self:service}-${sls:stage}
   httpApi:
     cors: true
   # iamRoleStatements:
