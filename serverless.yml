@@ -10,14 +10,14 @@ provider:
     DYNAMODB_TABLE_NAME: ${self:service}-${sls:stage}
   httpApi:
     cors: true
-  # iamRoleStatements:
-  #   - Effect: "Allow"
-  #     Action:
-  #     - dynamodb:*
-  #     Resource:
-  #       Fn::GetAtt:
-  #         - oneTable
-  #         - Arn
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+      - dynamodb:*
+      Resource:
+        Fn::GetAtt:
+          - oneTable
+          - Arn
   #   - Effect: "Allow"
   #     Action:
   #     - s3:*
@@ -30,6 +30,8 @@ provider:
 
 functions:
   api:
+    timeout: 300
+    memorySize: 128
     handler: wsgi_handler.handler
     events:
       - httpApi:
@@ -85,6 +87,7 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+        BillingMode: PAY_PER_REQUEST
 #     s3bucket:
 #       Type: AWS::S3::Bucket
 #       Properties:
