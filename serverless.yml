@@ -30,7 +30,7 @@ provider:
 
 functions:
   api:
-    timeout: 300
+    timeout: 29
     memorySize: 128
     handler: wsgi_handler.handler
     events:
@@ -84,9 +84,9 @@ resources:
             KeyType: HASH
           - AttributeName: sk
             KeyType: RANGE
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+        # ProvisionedThroughput:
+        #   ReadCapacityUnits: 1
+        #   WriteCapacityUnits: 1
         BillingMode: PAY_PER_REQUEST
 #     s3bucket:
 #       Type: AWS::S3::Bucket
