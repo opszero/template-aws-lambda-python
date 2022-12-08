@@ -8,8 +8,6 @@ provider:
     name: infra.opszero.com
   environment:
     DYNAMODB_TABLE_NAME: ${self:service}-${sls:stage}
-  httpApi:
-    cors: true
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -30,12 +28,11 @@ provider:
 
 functions:
   api:
+    url:
+      cors: true
     timeout: 29
     memorySize: 128
     handler: wsgi_handler.handler
-    events:
-      - httpApi:
-          path: '*'
   # handler:
   #   handler: handler.hello
   #   timeout: 300
