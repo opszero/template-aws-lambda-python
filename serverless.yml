@@ -2,7 +2,6 @@ service: "aws-lambda-python" # <name> of the service
 provider:
   name: aws
   runtime: python3.9
-  profile: opszero
   stage: prod
   region: us-west-2
   deploymentBucket:
