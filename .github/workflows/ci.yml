@@ -12,11 +12,10 @@ jobs:
         ports:
         - 8000:8000
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup Python
         uses: actions/setup-python@v2
-
-      - name: Install requierments.txt
+      - name: Install requirements.txt
         run: |
           pip3 install -r ./requirements.txt
           pip3 install pytest pytest-cov
@@ -25,9 +24,11 @@ jobs:
           pytest
           pytest --cov .
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
       - name: Install serverless
-        run: npm install -g serverless serverless-python-requirements
+        run: npm install
       - name: Deploy QA
         if: github.ref == 'refs/heads/qa'
         run: serverless deploy -s qa
