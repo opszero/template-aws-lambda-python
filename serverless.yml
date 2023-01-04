@@ -32,7 +32,7 @@ functions:
       cors: true
     timeout: 29
     memorySize: 128
-    handler: wsgi_handler.handler
+    handler: app.handler
   # handler:
   #   handler: handler.hello
   #   timeout: 300
@@ -50,7 +50,6 @@ functions:
 
 plugins:
   - serverless-python-requirements
-  - serverless-wsgi
 
 custom:
   stage: ${opt:stage, self:provider.stage}
@@ -58,8 +57,6 @@ custom:
   pythonRequirements:
     dockerizePip: true
     dockerImage: python:3.9
-  wsgi:
-    app: app.app
 
 package:
   patterns:

@@ -3,3 +3,4 @@ fastapi
 mangum
 requests
 pynamodb
+Jinja2

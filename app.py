@@ -10,6 +10,8 @@ from pynamodb.attributes import UnicodeAttribute
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+
+
 class OneTable(Model):
     '''
     DynamoDB works best with a single table. This table. Use this table to model
@@ -21,16 +23,20 @@ class OneTable(Model):
     pk = UnicodeAttribute(hash_key=True)
     sk = UnicodeAttribute(range_key=True)
 
+
 @app.get("/", response_class=HTMLResponse)
 def cats(request: Request):
-    return templates.TemplateResponse("index.html", {"request":request})
+    return templates.TemplateResponse("index.html", {"request": request})
+
 
 @app.get("/dogs/{id}")
 def dog(id):
     return "Dog"
 
+
 @app.get("/health")
 def health():
     return {"status": "Success"}
+
 
 handler = Mangum(app)
