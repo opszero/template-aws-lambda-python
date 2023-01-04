@@ -1,4 +1,5 @@
 pytest
-Flask
+fastapi
+mangum
 requests
 pynamodb
