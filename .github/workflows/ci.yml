@@ -30,7 +30,7 @@ jobs:
       - name: Install serverless
         run: npm install -g serverless serverless-python-requirements
       - name: Deploy Production
-        if: github.ref == 'refs/heads/main'
+        if: startsWith(github.ref, 'refs/tags/')
         run: serverless deploy -s prod
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
