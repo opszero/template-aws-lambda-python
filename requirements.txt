@@ -4,3 +4,4 @@ mangum
 requests
 pynamodb
 Jinja2
+opszero-rustypy
