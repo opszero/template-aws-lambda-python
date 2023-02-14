@@ -38,5 +38,9 @@ def dog(id):
 def health():
     return {"status": "Success"}
 
+@app.get("/rust")
+def health():
+    return {"status": "Success"}
+
 
 handler = Mangum(app)
