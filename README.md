@@ -1,6 +1,7 @@
 # Django on AWS Lambda
 
-Django run on AWS Lambda.
+Run Django on AWS Lambda without the need for any servers. Useful for APIs and
+other microservices.
 
 ## Usage
 
