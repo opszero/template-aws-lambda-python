@@ -1,24 +1,16 @@
-import json
+import os
+
+import requests
+
+BASE_URL = os.environ.get("BASE_URL")
 
 
-def hello(event, context):
-    body = {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
-        "input": event
-    }
+def warn_up(event, context):
+    health_url = f"{BASE_URL}/health"
 
-    response = {
-        "statusCode": 200,
-        "body": json.dumps(body)
-    }
+    resp = requests.get(health_url).json()
 
-    return response
-
-    # Use this code if you don't use the http event with the LAMBDA-PROXY
-    # integration
-    """
     return {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
-        "event": event
+        "BaseURL": health_url,
+        "HealthResponse": resp
     }
-    """

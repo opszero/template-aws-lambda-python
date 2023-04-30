@@ -1,18 +1,16 @@
-# AWS Lambda (Python)
+# Django on AWS Lambda
 
-# Handlers
+Django run on AWS Lambda.
 
-# Workflow
+- `serverless deploy`
+- Lambda URLs
 
-- Develop on Branches
-- Merge into `main` will deploy the prod stage
+# Pro Support
 
-# Testing
+<a href="https://www.opszero.com"><img src="https://assets.opszero.com/images/opszero_11_29_2016.png" width="300px"/></a>
 
-```
-pytest
-```
+[opsZero provides support](https://www.opszero.com/devops) for our modules including:
 
-All files should have a cooresponding test\_<name>.py file within the same
-directory. There is no separate test directory and this will allow us to keep
-the tests and code in sync.
+- Slack & Email support
+- One on One Video Calls
+- Implementation Guidance
