@@ -51,6 +51,7 @@ custom:
   pythonRequirements:
     dockerizePip: true
     dockerImage: python:3.10
+    usePoetry: true
 
 package:
   patterns:

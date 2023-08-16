@@ -19,11 +19,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Python
-        uses: actions/setup-python@v2
-      - name: Install requirements.txt
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Setup Poetry
+        uses: Gr1N/setup-poetry@v8
+      - name: Install Dependencies
         run: |
-          pip3 install -r ./requirements.txt
-          pip3 install pytest pytest-cov
+          poetry env use python3
+          source $(poetry env info --path)/bin/activate
+          poetry install
       - name: Run tests
         run: |
           pytest

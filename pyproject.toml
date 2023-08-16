@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "template-aws-lambda-django"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "template_aws_lambda_django"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mangum = "^0.17.0"
+requests = "^2.31.0"
+django = "^4.2.4"
+psycopg = {extras = ["pool"], version = "^3.1.10"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,5 +1,0 @@
-mangum
-requests
-Django
-psycopg[binary]
-psycopg[pool]
