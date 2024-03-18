@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Setup Poetry
-        uses: Gr1N/setup-poetry@v8
+        uses: Gr1N/setup-poetry@v9
       - name: Install Dependencies
         run: |
           poetry env use python3
