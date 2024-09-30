@@ -8,7 +8,7 @@ packages = [{include = "template_aws_lambda_django"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-mangum = "^0.17.0"
+mangum = "^0.19.0"
 requests = "^2.32.3"
 django = "^5.1"
 psycopg = {extras = ["pool"], version = "^3.1.19"}
